@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "@google/generative-ai": "^0.14.0",
+    "axios": "^1.7.2",
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5",
+    "mongoose": "^8.2.0",
+    "nodemo": "^1.0.0",
+    "nodemon": "^3.1.4",
+    "one-liner-joke": "^1.2.2",
+    "openai": "^4.52.1",
+    "p-queue": "^8.0.1"
+  },
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

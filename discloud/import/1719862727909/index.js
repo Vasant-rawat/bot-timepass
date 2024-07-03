@@ -8,6 +8,22 @@ const mongoose = require("mongoose");
 
 /////---------------------FUnctionss
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const genAI = process.env.GEMINI_API_KEY;
 const geminiApiUrl =
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
@@ -101,26 +117,22 @@ client.on("messageCreate", async (msg) => {
     const topic = msg.content.slice(8).trim();
     generateGeminiResponse(`Explain ${topic} in simple terms.`, msg);
     async function generateGeminiResponse(prompt, msg) {
-      try {
-        const response = await axios.post(`${geminiApiUrl}?key=${genAI}`, {
-          contents: [{ parts: [{ text: prompt }] }],
-        });
-        const generatedText = response.data.candidates[0].content.parts[0].text;
-        await msg.reply(generatedText);
-      } catch (error) {
-        console.error("Error generating content:", error);
-        await msg.reply(
-          "Sorry, I encountered an error while processing your request."
-        );
+        try {
+          const response = await axios.post(`${geminiApiUrl}?key=${genAI}`, {
+            contents: [{ parts: [{ text: prompt }] }],
+          });
+          const generatedText = response.data.candidates[0].content.parts[0].text;
+          await msg.reply(generatedText);
+        } catch (error) {
+          console.error("Error generating content:", error);
+          await msg.reply(
+            "Sorry, I encountered an error while processing your request."
+          );
+        }
       }
-    }
   }
-
   if (msg.content.startsWith("!kuki")) {
-    const query = msg.content.slice(0).trim();
-    if (query == null) {
-      msg.reply("Pls enter a msg with the  command");
-    }
+    const query = msg.content.slice(14).trim();
 
     try {
       const response = await axios.post(`${geminiApiUrl}?key=${genAI}`, {
@@ -147,11 +159,16 @@ client.on("messageCreate", async (msg) => {
   if (msg.content === "kuki help") {
     msg.reply("<@" + msg.author.id + ">" + "Bol b*dk");
   }
-  
+  if (
+    msg.content === " <@1210877856226218035> hila ke soja " ||
+    msg.content === "hilakesoja"
+  ) {
+    msg.reply("Teri ma hila ke degi number de usaka");
+  }
   if (msg.content === " <@1210877856226218035> chutiya") {
     msg.reply("mu me le le mera bsdk");
   } else if (msg.content === "ok" || msg.content === "Ok") {
-    msg.reply("");
+    msg.reply("Kya laga rakha hai ok ok mc.");
   } else if (msg.content === "Kuki suck my dimk") {
     let random = Math.floor(Math.random() * Replies.length);
     msg.reply(angry[random]);
@@ -169,13 +186,7 @@ client.on("messageCreate", async (msg) => {
   ) {
     msg.reply("Bol bsdk.");
   }
-  if (
-    msg.content === "<@1210877856226218035> ayein" ||
-    msg.content === "<@1210877856226218035> ayein" ||
-    msg.content === "<@1210877856226218035> Ayein"
-  ) {
-    msg.reply("Baigan");
-  }
+  
   if (msg.content === "<@1210877856226218035>") {
     let random = Math.floor(Math.random() * Greetings.length);
     msg.reply(Greetings[random]);
